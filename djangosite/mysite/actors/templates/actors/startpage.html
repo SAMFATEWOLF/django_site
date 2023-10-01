@@ -7,8 +7,16 @@
 				<p class="first">Категория: {{p.cat}}</p>
 				<p class="last">Обновлено: {{p.upd_time|date:'d M, Y'}}</p>
 			</div>
-
+{% if p.photo %}
+	<p><img class="img-article-left thumb" src="{{p.photo.url}}"></p>
+{% endif %}
 				<h2>{{p.title}}</h2>
+				<h4>Пол: {{p.sex}}</h4>
+				<h4>Дата рождения: {{p.birth|date:'d M, Y'}}</h4>
+				{% if p.death %}
+				<h4>Дата сметри: {p.death|date:'d M, Y'}</h4>
+				{% endif %}
+				<h4>Возраст: {{p.get_age}}</h4>
 	{% autoescape on %}
 	{{p.bio|linebreaks|truncatewords:50}}
 	{% endautoescape %}
