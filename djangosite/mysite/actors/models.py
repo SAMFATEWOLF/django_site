@@ -31,7 +31,7 @@ class Actors(models.Model):
         return temp.days // 365
 
     def get_absolute_url(self):
-        return reverse('post', kwargs={'post_id': self.pk})
+        return reverse('post', kwargs={'post_slug': self.slug})
 
     class Meta:
         verbose_name = 'актёров'

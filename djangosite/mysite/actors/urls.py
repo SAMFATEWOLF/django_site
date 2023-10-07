@@ -5,7 +5,7 @@ from actors.views import *
 
 urlpatterns = [
     path('', start_page, name='home'),
-    path('post/<int:post_id>/', show_post, name='post'),
+    path('post/<slug:post_slug>/', show_post, name='post'),
     path('about/', about, name='about'),
     path('addpage/', addpage, name='add_page'),
     path('contact/', contact, name='contact'),

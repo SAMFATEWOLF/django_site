@@ -14,7 +14,7 @@
 				<h4>Пол: {{p.sex}}</h4>
 				<h4>Дата рождения: {{p.birth|date:'d M, Y'}}</h4>
 				{% if p.death %}
-				<h4>Дата сметри: {p.death|date:'d M, Y'}</h4>
+				<h4>Дата смерти: {{p.death|date:'d M, Y'}}</h4>
 				{% endif %}
 				<h4>Возраст: {{p.get_age}}</h4>
 	{% autoescape on %}

@@ -8,12 +8,14 @@ class ActorsAdmin(admin.ModelAdmin):
     search_fields = ('title', 'bio')
     list_editable = ('is_published',)
     list_filter = ('crt_time', 'title', 'is_published')
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'name',)
     list_display_links = ('id', 'name')
     search_fields = ('name',)
+    prepopulated_fields = {'slug': ('name', )}
 
 
 admin.site.register(Actors, ActorsAdmin)

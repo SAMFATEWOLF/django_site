@@ -1,0 +1,17 @@
+{% extends 'actors/base.html' %}
+
+{% block content %}
+<h1>{{post.title}}</h1>
+<h4>Пол: {{post.sex}}</h4>
+<h4>Дата рождения: {{post.birth|date:'d M, Y'}}</h4>
+{% if post.death %}
+<h4>Дата сметри: {{post.death|date:'d M, Y'}}</h4>
+{% endif %}
+<h4>Возраст: {{post.get_age}}</h4>
+
+{% if post.photo %}
+<p><img class="img-article-left" src="{{post.photo.url}}"></p>
+{% endif %}
+
+{{post.bio|linebreaks}}
+{% endblock %}
