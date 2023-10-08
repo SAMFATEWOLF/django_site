@@ -11,7 +11,7 @@ class Actors(models.Model):
     birth = models.DateField(blank=True, verbose_name='Дата рождения')
     death = models.DateField(blank=True, null=True, verbose_name='Дата смерти')
     bio = models.TextField(blank=True, verbose_name='Биография')
-    photo = models.ImageField(upload_to='photos%Y/%m/%d/', verbose_name='Фото')
+    photo = models.ImageField(blank=True, null=True, upload_to='photos%Y/%m/%d/', verbose_name='Фото')
     crt_time = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     upd_time = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
     is_published = models.BooleanField(default=True, verbose_name='Публикация')

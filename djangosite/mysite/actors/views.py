@@ -1,5 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+
+from .forms import *
 from .models import *
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
@@ -44,7 +46,14 @@ def login(request):
 
 
 def addpage(request):
-    return HttpResponse('addpage')
+    if request.method == 'POST':
+        form = AddPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = AddPostForm()
+    return render(request, 'actors/addpage.html', {'form': form, 'menu': menu, 'title': 'Добавление статьи'})
 
 
 def show_post(request, post_slug):
