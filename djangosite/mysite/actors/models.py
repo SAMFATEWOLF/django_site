@@ -15,7 +15,7 @@ class Actors(models.Model):
     crt_time = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     upd_time = models.DateTimeField(auto_now=True, verbose_name='Время обновления')
     is_published = models.BooleanField(default=True, verbose_name='Публикация')
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория', null=True)
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')
 
     def __str__(self):
         return self.title
