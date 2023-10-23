@@ -22,7 +22,7 @@ from actors.views import pageNotFound
 from mysite import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('', include('actors.urls'))
 ]
 handler404 = pageNotFound
