@@ -5,7 +5,7 @@ from .models import *
 
 
 class AddPostForm(forms.ModelForm):
-    def __int__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['cat'].empty_label = 'Категория не выбрана'
 

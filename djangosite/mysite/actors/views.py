@@ -46,7 +46,7 @@ def login(request):
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
     template_name = 'actors/addpage.html'
-    login_url = reverse_lazy('admin') #TODO: отправить на авторизацию, вернуть через утилс
+    login_url = reverse_lazy('admin')  # TODO: отправить на авторизацию, вернуть через утилс
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -66,18 +66,16 @@ class ShowPost(DataMixin, DetailView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-def show_category(request, cat_id):
-    posts = Actors.objects.filter(cat_id=cat_id)
+class ShowCategory(DataMixin, ListView):
+    model = Actors
+    template_name = 'actors/startpage.html'
+    context_object_name = 'posts'
 
-    if len(posts) == 0:
-        raise Http404()
+    def get_queryset(self):
+        return Actors.objects.filter(cat__id=self.kwargs['cat_id'], is_published=True)
 
-    context = {
-        'title': 'Категория - ' + str(Category.objects.filter(pk=cat_id)[0].name),
-        'menu': menu,
-        'posts': posts,
-        'cat_selected': cat_id,
-
-    }
-
-    return render(request, 'actors/startpage.html', context=context)
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        c_def = self.get_user_context(title='Категория - ' + str(context['posts'][0].cat),
+                                      cat_selected=context['posts'][0].cat_id)
+        return dict(list(context.items()) + list(c_def.items()))
